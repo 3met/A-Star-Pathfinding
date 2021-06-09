@@ -8,8 +8,8 @@ import numpy as np
 # S for start
 # E for end
 # ' ' for empty
-# O for big obsticle (Blocks path)
-# o for small obsticle (Slows path)
+# O for big obstacle (Blocks path)
+# o for small obstacle (Slows path)
 # x for path
 GRID = (('.', '.', '.', '.', '.', '.', '.', 'O', '.', '.', '.', '.', '.', '.', '.', '.', 'O', '.', '.', 'E'), 
 		('.', '.', '.', '.', '.', '.', '.', 'O', '.', '.', '.', '.', '.', '.', '.', '.', 'O', '.', '.', '.'),
@@ -37,8 +37,8 @@ GRID = (('.', '.', '.', '.', '.', '.', '.', 'O', '.', '.', '.', '.', '.', '.', '
 CARDINAL_COST = 10
 # Cost of walking one tile diagonal
 DIAGONAL_COST = 14
-# Added cost of walking on obsticle node 
-OBSTICLE_COST = 30
+# Added cost of walking on obstacle node 
+OBSTACLE_COST = 30
 
 # Path class
 # Used for storage of movement values
@@ -196,7 +196,7 @@ class Grid:
 					if grid[i][j] == 'O':
 						self.node_grid[i][j].walkable = False
 					elif grid[i][j] == 'o':
-						self.node_grid[i][j].e += OBSTICLE_COST
+						self.node_grid[i][j].e += OBSTACLE_COST
 					# Sets start and end node
 					elif grid[i][j] == 'S':
 						self.start = self.node_grid[i][j]
@@ -284,14 +284,6 @@ def main():
 	grid.a_star()
 	grid.show_solved()
 
-	# Prints node values
-	'''
-	print("\nGrid with Values:")
-	for i in range(len(grid.node_grid)):
-		for j in range(len(grid.node_grid[i])):
-			print(grid.node_grid[i][j].g_cost, '\t', end='')
-		print()
-	'''
 
 if __name__ == "__main__":
 	main()
